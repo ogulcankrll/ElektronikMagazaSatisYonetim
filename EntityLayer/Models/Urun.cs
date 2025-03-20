@@ -12,10 +12,12 @@ namespace EntityLayer.Models
         public int KategoriID { get; set; }
         public int MarkaID { get; set; }
         public decimal Fiyat { get; set; }
+        public string ResimURL { get; set; }
+
 
         public Kategori Kategori { get; set; }
         public Marka Marka { get; set; }
         public List<UrunVaryasyon> UrunVaryasyonlari { get; set; }
-        public List<UrunResim> UrunResimleri { get; set; }
+      
     }
 }

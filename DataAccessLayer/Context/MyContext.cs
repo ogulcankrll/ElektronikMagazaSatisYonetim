@@ -32,7 +32,6 @@ namespace DataAccessLayer.Context
         public DbSet<SiparisUrun> siparisUrun { get; set; }
         public DbSet<TeslimatTipi> TeslimatTipi { get; set; }
         public DbSet<Urun> Urun { get; set; }
-        public DbSet<UrunResim> UrunResim { get; set; }
         public DbSet<UrunVaryasyon> UrunVaryasyon { get; set; }
         public DbSet<Yorum> Yorum { get; set; }
 
