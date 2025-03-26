@@ -11,41 +11,46 @@ namespace DataAccessLayer.Concrete.Repository
     public class GenericRepository<T> : IGenericDal<T> where T : class, new()
     {
         private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        
 
         
-        public GenericRepository(DbContext context)
+        public GenericRepository()
         {
-            _context = context;
-            _dbSet = _context.Set<T>(); 
+            _context = new Context.MyContext();
+           
+        }
+        private void Kaydet()
+        {
+            _context.SaveChanges();
         }
 
-        public void Ekle(T entity)
+        public void Ekle(T t)
         {
-            _dbSet.Add(entity);  
-            _context.SaveChanges();  
+            _context.Add(t);
+            Kaydet();
+
         }
 
         public T GetirID(int id)
         {
-            return _dbSet.Find(id);  
+            return _context.Find<T>(id);
         }
 
-        public void Guncelle(T entity)
+        public void Guncelle(T t)
         {
-            _dbSet.Update(entity);  
-            _context.SaveChanges();  
+            _context.Update(t);
+            Kaydet();
         }
 
-        public void Sil(T entity)
+        public void Sil(T t)
         {
-            _dbSet.Remove(entity);  
-            _context.SaveChanges();  
+           _context.Remove(t);
+            Kaydet();
         }
 
         public List<T> TumunuGetir()
         {
-            return _dbSet.ToList();  
+            return _context.Set<T>().ToList();
         }
     }
 
