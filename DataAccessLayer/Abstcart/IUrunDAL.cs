@@ -9,5 +9,7 @@ namespace DataAccessLayer.Abstcart
 {
     public interface IUrunDAL:IGenericDal<Urun>
     {
+        List<Urun> UrunleriKategoriVeMarkaIleGetir();
+
     }
 }

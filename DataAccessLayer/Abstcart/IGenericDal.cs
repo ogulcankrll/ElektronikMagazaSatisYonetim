@@ -9,9 +9,13 @@ namespace DataAccessLayer.Abstcart
     public interface IGenericDal<T> where T : class,new()
     {
         void Ekle(T t);
-        void Sil(T t);  
+
+        void Sil(T t);
+        
         void Guncelle(T t);
+
         T GetirID(int id);
+
         List<T> TumunuGetir();
     }
 }

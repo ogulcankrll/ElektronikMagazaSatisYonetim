@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Models
+@model List<Urun>   
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h1>Urunler</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Ad</th>th>
+        <th>Kategori</th>
+        <th>Marka</th>
+        <th>Fiyat</th>
+        <th>Resim</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Ad</td>
+            <td>@item.Kategori.Ad</td>
+            <td>@item.Marka.Ad</td>
+            <td>@item.Fiyat</td>
+           
+        </tr>
+    }
+</table>
+

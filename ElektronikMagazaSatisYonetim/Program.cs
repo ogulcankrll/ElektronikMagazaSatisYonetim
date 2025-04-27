@@ -1,8 +1,24 @@
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Abstcart;
+using DataAccessLayer.Concrete.EntityFramework;
+using DataAccessLayer.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUrunServis, UrunManager>();
+builder.Services.AddScoped<IUrunDAL, EFUrunDAL>();
+builder.Services.AddScoped<IKategoriServis, KategoriManager>();
+builder.Services.AddScoped<IKategoriDAL, EFKategoriDAL>();
+builder.Services.AddScoped<IMarkaServis, MarkaManager>();
+builder.Services.AddScoped<IMarkaDAL, EFMarkaDAL>();
 
+
+
+
+builder.Services.AddDbContext<MyContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

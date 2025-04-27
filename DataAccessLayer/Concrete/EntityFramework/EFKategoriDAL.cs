@@ -10,16 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EFUrunDAL:GenericRepository<Urun>,IUrunDAL
+    public class EFKategoriDAL:GenericRepository<Kategori>,IKategoriDAL
     {
        
-
-        public List<Urun> UrunleriKategoriVeMarkaIleGetir()
-        {
-            return _context.Set<Urun>()
-                           .Include(u => u.Kategori)
-                           .Include(u => u.Marka)
-                           .ToList();
-        }
     }
 }
