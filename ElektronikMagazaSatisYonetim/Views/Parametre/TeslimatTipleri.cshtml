@@ -1,0 +1,31 @@
+﻿@model List<EntityLayer.Models.TeslimatTipi>
+
+@{
+    ViewData["Title"] = "Teslimat Tipleri";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Teslimat Tipleri</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tip Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teslimat in Model)
+        {
+            <tr>
+                <td>@teslimat.TipAdi</td>
+                <td>
+                    <a href="@Url.Action("TeslimatTipiEkle", "Parametre", new { id = teslimat.Id })" class="btn btn-primary">Güncelle</a>
+                    <a href="@Url.Action("TeslimatTipiSil", "Parametre", new { id = teslimat.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("TeslimatTipiEkle", "Parametre")" class="btn btn-success">Yeni Teslimat Tipi Ekle</a>

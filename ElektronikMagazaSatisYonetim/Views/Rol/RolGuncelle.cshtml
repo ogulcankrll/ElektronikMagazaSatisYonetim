@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Models.Rol
+@{
+    ViewData["Title"] = "RolGuncelle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+
+<h2>Rol Güncelle</h2>
+
+<form asp-action="RolGuncelle" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label>Rol Adı</label>
+        <input asp-for="RolAdi" class="form-control" />
+        <span asp-validation-for="RolAdi" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Güncelle</button>
+</form>
+

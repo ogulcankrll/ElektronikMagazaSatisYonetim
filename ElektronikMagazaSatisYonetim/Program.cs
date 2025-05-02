@@ -2,7 +2,9 @@ using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstcart;
 using DataAccessLayer.Concrete.EntityFramework;
+using DataAccessLayer.Concrete.Repository;
 using DataAccessLayer.Context;
+using EntityLayer.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,19 @@ builder.Services.AddScoped<IMusteriServis, MusteriManager>();
 builder.Services.AddScoped<IMusteriDAL, EFMusteriDAL>();
 builder.Services.AddScoped<IKargoFirmaServis, KargoFirmaManager>();
 builder.Services.AddScoped<IKargoFirmaDAL, EFKargoFirmaDAL>();
+
+// Generic servisler
+builder.Services.AddScoped<IGenericService<Rol>, GenericManager<Rol>>();
+builder.Services.AddScoped<IGenericDal<Rol>, GenericRepository<Rol>>();
+
+builder.Services.AddScoped<IGenericService<TeslimatTipi>, GenericManager<TeslimatTipi>>();
+builder.Services.AddScoped<IGenericDal<TeslimatTipi>, GenericRepository<TeslimatTipi>>();
+
+builder.Services.AddScoped<IGenericService<SiparisDurumu>, GenericManager<SiparisDurumu>>();
+builder.Services.AddScoped<IGenericDal<SiparisDurumu>, GenericRepository<SiparisDurumu>>();
+
+
+
 
 
 

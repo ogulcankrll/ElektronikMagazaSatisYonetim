@@ -1,0 +1,16 @@
+﻿@model EntityLayer.Models.TeslimatTipi
+@{
+    ViewData["Title"] = "TeslimatTipiEkle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Yeni Teslimat Tipi Ekle</h2>
+
+<form asp-action="TeslimatTipiEkle" method="post">
+    <div class="form-group">
+        <label for="TipAdi">Tip Adı</label>
+        <input type="text" class="form-control" id="TipAdi" name="TipAdi" value="@Model.TipAdi" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+

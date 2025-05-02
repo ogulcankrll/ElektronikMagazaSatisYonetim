@@ -1,0 +1,15 @@
+﻿@model EntityLayer.Models.SiparisDurumu
+@{
+    ViewData["Title"] = "SiparisDurumuEkle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+<h2>Yeni Sipariş Durumu Ekle</h2>
+
+<form asp-action="SiparisDurumuEkle" method="post">
+    <div class="form-group">
+        <label for="DurumAdi">Durum Adı</label>
+        <input type="text" class="form-control" id="DurumAdi" name="DurumAdi" value="@Model.DurumAdi" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+

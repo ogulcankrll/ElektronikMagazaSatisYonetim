@@ -1,0 +1,18 @@
+﻿@model EntityLayer.Models.Rol
+@{
+    ViewData["Title"] = "RolEkle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+
+<h2>Yeni Rol Ekle</h2>
+
+<form asp-action="RolEkle" method="post">
+    <div class="form-group">
+        <label>Rol Adı</label>
+        <input asp-for="RolAdi" class="form-control" />
+        <span asp-validation-for="RolAdi" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Kaydet</button>
+</form>
+

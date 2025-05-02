@@ -1,0 +1,31 @@
+﻿@model List<EntityLayer.Models.SiparisDurumu>
+
+@{
+    ViewData["Title"] = "Sipariş Durumları";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Sipariş Durumları</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Durum Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var durum in Model)
+        {
+            <tr>
+                <td>@durum.DurumAdi</td>
+                <td>
+                    <a href="@Url.Action("SiparisDurumuEkle", "Parametre", new { id = durum.Id })" class="btn btn-primary">Güncelle</a>
+                    <a href="@Url.Action("Sil", "Parametre", new { id = durum.Id, tip = "Siparis" })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("SiparisDurumuEkle", "Parametre")" class="btn btn-success">Yeni Sipariş Durumu Ekle</a>
