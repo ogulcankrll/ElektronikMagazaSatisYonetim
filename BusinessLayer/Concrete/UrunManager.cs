@@ -20,6 +20,7 @@ namespace BusinessLayer.Concrete
         public void Ekle(Urun t)
         {
             _urunDAL.Ekle(t);
+            
         }
         public Urun GetirID(int id)
         {
