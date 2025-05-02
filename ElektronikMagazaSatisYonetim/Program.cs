@@ -14,6 +14,10 @@ builder.Services.AddScoped<IKategoriServis, KategoriManager>();
 builder.Services.AddScoped<IKategoriDAL, EFKategoriDAL>();
 builder.Services.AddScoped<IMarkaServis, MarkaManager>();
 builder.Services.AddScoped<IMarkaDAL, EFMarkaDAL>();
+builder.Services.AddScoped<IMusteriServis, MusteriManager>();
+builder.Services.AddScoped<IMusteriDAL, EFMusteriDAL>();
+builder.Services.AddScoped<IKargoFirmaServis, KargoFirmaManager>();
+builder.Services.AddScoped<IKargoFirmaDAL, EFKargoFirmaDAL>();
 
 
 

@@ -1,0 +1,35 @@
+﻿@model List<EntityLayer.Models.Musteri>
+
+@{
+    ViewData["Title"] = "Müşteriler";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Müşteriler</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Eposta</th>
+            <th>Telefon</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var musteri in Model)
+        {
+            <tr>
+                <td>@musteri.Ad</td>
+                <td>@musteri.Soyad</td>
+                <td>@musteri.Eposta</td>
+                <td>@musteri.Telefon</td>
+                <td>
+                    <a href="@Url.Action("MusteriGuncelle", "Musteri", new { id = musteri.Id })" class="btn btn-primary">Güncelle</a>
+                    <a href="@Url.Action("MusteriSil", "Musteri", new { id = musteri.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("MusteriEkle", "Musteri")" class="btn btn-success">Yeni Müşteri Ekle</a>

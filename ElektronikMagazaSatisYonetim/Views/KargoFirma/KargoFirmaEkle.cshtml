@@ -1,0 +1,17 @@
+﻿@model EntityLayer.Models.KargoFirma
+
+@{
+    ViewData["Title"] = "Kargo Firma Ekle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Kargo Firma Ekle</h2>
+
+<form asp-action="KargoFirmaEkle" method="post">
+    <div class="form-group">
+        <label for="FirmaAdi">Firma Adı</label>
+        <input asp-for="FirmaAdi" class="form-control" />
+        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+</form>

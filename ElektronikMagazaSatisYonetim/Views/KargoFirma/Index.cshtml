@@ -1,0 +1,31 @@
+﻿@model List<EntityLayer.Models.KargoFirma>
+
+@{
+    ViewData["Title"] = "Kargo Firmaları";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Kargo Firmaları</h2>
+
+<a href="@Url.Action("KargoFirmaEkle")" class="btn btn-success">Yeni Kargo Firma Ekle</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Firma Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kargoFirma in Model)
+        {
+            <tr>
+                <td>@kargoFirma.FirmaAdi</td>
+                <td>
+                    <a href="@Url.Action("KargoFirmaGuncelle", new { id = kargoFirma.Id })" class="btn btn-primary">Güncelle</a>
+                    <a href="@Url.Action("KargoFirmaSil", new { id = kargoFirma.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

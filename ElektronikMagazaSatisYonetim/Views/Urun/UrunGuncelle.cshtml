@@ -1,88 +1,85 @@
 ﻿@model EntityLayer.Models.Urun
-
 @{
     ViewData["Title"] = "Ürün Güncelle";
     Layout = "~/Views/Shared/_CoreLayout.cshtml";
 }
 
-<h2>Ürün Güncelle</h2>
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-warning text-white">
-                    <h4>Ürün Bilgilerini Güncelle</h4>
-                </div>
-                <div class="card-body">
-                    <form asp-action="UrunGuncelle" method="post" enctype="multipart/form-data">
-                        <input type="hidden" asp-for="Id" />
+<h1>Ürün Güncelleme</h1>
 
-                        <div class="form-group mb-3">
-                            <label>Ürün Adı</label>
-                            <input asp-for="Ad" class="form-control" />
-                        </div>
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="UrunGuncelle" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ResimURL" />
 
-                        <div class="form-group mb-3">
-                            <label>Kategori</label>
-                            <select asp-for="KategoriID" class="form-control" asp-items="ViewBag.Kategoriler">
-                                <option value="">Kategori Seçiniz</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Marka</label>
-                            <select asp-for="MarkaID" class="form-control" asp-items="ViewBag.Markalar">
-                                <option value="">Marka Seçiniz</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Fiyat</label>
-                            <div class="input-group">
-                                <input asp-for="Fiyat" class="form-control" type="number" step="0.01" min="0" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text">₺</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Mevcut Resim</label><br />
-                            @if (!string.IsNullOrEmpty(Model.ResimURL))
-                            {
-                                <img src="@Model.ResimURL" alt="Ürün Resmi" width="120" class="img-thumbnail mb-2" />
-                            }
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label>Yeni Resim (değiştirmek için)</label>
-                            <input type="file" name="resimDosyasi" class="form-control" />
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-warning">
-                                <i class="fa fa-save"></i> Güncelle
-                            </button>
-                            <a asp-action="Index" class="btn btn-secondary">
-                                <i class="fa fa-list"></i> Listeye Dön
-                            </a>
-                        </div>
-                    </form>
-                </div>
+            <div class="form-group mb-3">
+                <label asp-for="Ad" class="control-label">Ürün Adı</label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    <h4>Bilgi</h4>
-                </div>
-                <div class="card-body">
-                    <p>Bu sayfada mevcut ürün bilgilerini güncelleyebilirsiniz.</p>
-                    <hr />
-                    <p><strong>Not:</strong> Yeni bir resim seçmezseniz mevcut resim korunur.</p>
-                </div>
+            <div class="form-group mb-3">
+                <label asp-for="KategoriID" class="control-label">Kategori</label>
+                <select asp-for="KategoriID" class="form-control" asp-items="ViewBag.Kategoriler"></select>
+                <span asp-validation-for="KategoriID" class="text-danger"></span>
             </div>
-        </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="MarkaID" class="control-label">Marka</label>
+                <select asp-for="MarkaID" class="form-control" asp-items="ViewBag.Markalar"></select>
+                <span asp-validation-for="MarkaID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Fiyat" class="control-label">Fiyat</label>
+                <input asp-for="Fiyat" class="form-control" />
+                <span asp-validation-for="Fiyat" class="text-danger"></span>
+            </div>
+
+           
+            <div class="form-group mb-3">
+                <label for="resimDosyasi" class="control-label">Resim</label>
+                <input type="file" id="resimDosyasi" name="resimDosyasi" class="form-control" accept="image/*" />
+                <small class="form-text text-muted">Maksimum dosya boyutu: 5MB</small>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ResimURL))
+            {
+                <div class="form-group mb-3">
+                    <label class="control-label">Mevcut Resim</label>
+                    <div>
+                        <img src="@Model.ResimURL" alt="Ürün Resmi" width="200" class="img-thumbnail" />
+                    </div>
+                    <small class="form-text text-muted">Yeni bir resim yüklerseniz mevcut resim silinecektir.</small>
+                </div>
+            }
+
+            
+
+            <div class="form-group mb-4">
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </div>
+        </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Form doğrulama için JavaScript
+        $(document).ready(function () {
+            // Dosya boyutu kontrolü
+            $("#resimDosyasi").on("change", function () {
+                const fileSize = this.files[0]?.size / 1024 / 1024; // MB cinsinden
+                if (fileSize > 5) {
+                    alert("Dosya boyutu 5 MB'dan büyük olamaz!");
+                    this.value = ""; // Dosya seçimini temizle
+                }
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,21 @@
+﻿@model EntityLayer.Models.Marka
+
+@{
+    ViewData["Title"] = "Marka Güncelle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h2>Marka Güncelle</h2>
+
+<form asp-action="MarkaGuncelle" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Ad"></label>
+        <input asp-for="Ad" class="form-control" />
+        <span asp-validation-for="Ad" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

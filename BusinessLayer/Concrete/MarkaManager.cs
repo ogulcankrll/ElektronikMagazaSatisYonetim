@@ -23,8 +23,6 @@ namespace BusinessLayer.Concrete
            _markaDAL.Ekle(t);   
         }
 
-       
-
         public Marka GetirID(int id)
         {
            return _markaDAL.GetirID(id);    
