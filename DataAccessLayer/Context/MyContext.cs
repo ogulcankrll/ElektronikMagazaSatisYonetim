@@ -25,7 +25,6 @@ namespace DataAccessLayer.Context
         public DbSet<Marka> Marka { get; set; }
         public DbSet<Musteri> Musteri { get; set; }
         public DbSet<Personel> Personel { get; set; }
-        public DbSet<PersonelDetay> PersonelDetay { get; set; }
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Siparis> Siparis { get; set; }
         public DbSet<SiparisDurumu> SiparisDurumu { get; set; }

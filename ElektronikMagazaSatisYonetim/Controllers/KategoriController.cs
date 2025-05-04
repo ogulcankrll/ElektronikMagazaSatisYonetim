@@ -1,8 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using ElektronikMagazaSatisYonetim.Controllers;
 using EntityLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-public class KategoriController : Controller
+public class KategoriController : BaseController
 {
     private readonly IKategoriServis _kategoriServis;
 

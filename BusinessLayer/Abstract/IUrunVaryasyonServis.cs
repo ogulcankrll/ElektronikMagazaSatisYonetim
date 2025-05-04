@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IUrunVaryasyonServis:IGenericService<UrunVaryasyon>
     {
+        List<UrunVaryasyon> UrunVaryasyonlariUrunIleGetir();
+
     }
 }

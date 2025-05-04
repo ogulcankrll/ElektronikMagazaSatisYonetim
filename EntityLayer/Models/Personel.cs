@@ -18,6 +18,6 @@ namespace EntityLayer.Models
         public int RolID { get; set; }
 
         public Rol Rol { get; set; }  
-        public PersonelDetay PersonelDetay { get; set; }
+    
     }
 }

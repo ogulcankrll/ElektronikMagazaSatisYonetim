@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IPersonelServis:IGenericService<Personel>
     {
+        List<Personel> TumPersonelleriRolIleGetir();
     }
 }

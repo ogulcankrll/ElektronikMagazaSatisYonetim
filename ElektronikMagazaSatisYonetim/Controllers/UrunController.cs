@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using System;
+using ElektronikMagazaSatisYonetim.Controllers;
 
-public class UrunController : Controller
+public class UrunController : BaseController
 {
     private readonly IUrunServis _urunServis;
     private readonly IKategoriServis _kategoriServis;

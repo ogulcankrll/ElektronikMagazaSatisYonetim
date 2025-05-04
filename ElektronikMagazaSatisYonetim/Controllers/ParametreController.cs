@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ElektronikMagazaSatisYonetim.Controllers
 {
-    public class ParametreController : Controller
+    public class ParametreController : BaseController
     {
         private readonly IGenericService<TeslimatTipi> _teslimatService;
         private readonly IGenericService<SiparisDurumu> _siparisDurumuService;

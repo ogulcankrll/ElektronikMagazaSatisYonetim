@@ -1,8 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using ElektronikMagazaSatisYonetim.Controllers;
 using EntityLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-public class MarkaController : Controller
+public class MarkaController : BaseController
 {
     private readonly IMarkaServis _markaServis;
 

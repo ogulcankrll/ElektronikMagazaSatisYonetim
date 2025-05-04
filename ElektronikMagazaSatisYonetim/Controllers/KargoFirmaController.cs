@@ -1,8 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using ElektronikMagazaSatisYonetim.Controllers;
 using EntityLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-public class KargoFirmaController : Controller
+public class KargoFirmaController : BaseController
 {
     private readonly IKargoFirmaServis _kargoFirmaServis;
 

@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstcart
 {
     public interface IUrunVaryasyonDAL:IGenericDal<UrunVaryasyon>
     {
+        List<UrunVaryasyon> TumVaryasyonlariUrunlerleGetir();
     }
 }

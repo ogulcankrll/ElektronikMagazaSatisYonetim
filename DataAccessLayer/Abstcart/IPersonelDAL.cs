@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstcart
 {
     public interface IPersonelDAL:IGenericDal<Personel>
     {
+        List<Personel> TumunuRolIleGetir();
     }
 }

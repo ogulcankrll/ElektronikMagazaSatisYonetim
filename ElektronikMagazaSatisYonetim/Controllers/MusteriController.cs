@@ -1,8 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using ElektronikMagazaSatisYonetim.Controllers;
 using EntityLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-public class MusteriController : Controller
+public class MusteriController : BaseController
 {
     private readonly IMusteriServis _musteriServis;
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ElektronikMagazaSatisYonetim.Controllers
 {
-    public class RolController : Controller
+    public class RolController : BaseController
     {
         private readonly IGenericService<Rol> _rolService;
 

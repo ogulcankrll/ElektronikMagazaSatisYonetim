@@ -1,0 +1,47 @@
+﻿@model List<EntityLayer.Models.UrunVaryasyon>
+
+@{
+    ViewData["Title"] = "Varyasyon Listesi";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Ürün Varyasyonları</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Varyasyon Adı</th>
+                <th scope="col">Ek Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int sira = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@sira</th>
+                        <td>@item.Urun.Ad </td>
+                        <td>@item.VaryasyonAdi</td>
+                        <td>@String.Format("{0:C}", item.EkFiyat)</td>
+                    </tr>
+                    sira++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">Kayıtlı varyasyon bulunamadı.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("VaryasyonEkle", "UrunVaryasyon")" class="btn btn-primary">
+        Yeni Varyasyon Ekle
+    </a>
+</div>
