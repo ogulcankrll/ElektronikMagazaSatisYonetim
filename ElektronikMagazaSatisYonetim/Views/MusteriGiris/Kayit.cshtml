@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Giris";
+    Layout = "~/Views/Shared/_MusteriGirisLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Müşteri Kayıt</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .register-container {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #4361ee;
+            border-color: #4361ee;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+            .btn-primary:hover {
+                background-color: #3a56d4;
+                border-color: #3a56d4;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="register-container">
+            <div class="header-logo">
+                <i class="fas fa-user-plus fa-3x text-primary"></i>
+            </div>
+            <h2 class="form-title">Müşteri Kayıt</h2>
+
+            @if (ViewBag.Hata != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>@ViewBag.Hata
+                </div>
+            }
+
+            <form asp-action="Kayit" asp-controller="MusteriGiris" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Ad" class="form-label">Ad</label>
+                            <input type="text" class="form-control" id="Ad" name="Ad" placeholder="Adınız" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Soyad" class="form-label">Soyad</label>
+                            <input type="text" class="form-control" id="Soyad" name="Soyad" placeholder="Soyadınız" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Eposta" class="form-label">E-posta</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" id="Eposta" name="Eposta" placeholder="E-posta adresiniz" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Sifre" class="form-label">Şifre</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="Sifre" name="Sifre" placeholder="Şifreniz" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Telefon" class="form-label">Telefon</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        <input type="tel" class="form-control" id="Telefon" name="Telefon" placeholder="Telefon numaranız">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Adres" class="form-label">Adres</label>
+                    <textarea class="form-control" id="Adres" name="Adres" rows="3" placeholder="Adresiniz"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus me-2"></i>Kayıt Ol
+                    </button>
+                </div>
+            </form>
+
+            <div class="login-link">
+                <p>Zaten hesabınız var mı? <a asp-action="Giris" asp-controller="MusteriGiris">Giriş Yapın</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

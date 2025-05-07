@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,8 @@ namespace DataAccessLayer.Context
         public DbSet<Urun> Urun { get; set; }
         public DbSet<UrunVaryasyon> UrunVaryasyon { get; set; }
         public DbSet<Yorum> Yorum { get; set; }
+        public DbSet<Sepet> Sepet { get; set; }
+        public DbSet<SepetUrun> SepetUrun { get; set; }
 
 
 

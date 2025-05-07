@@ -38,6 +38,9 @@ builder.Services.AddScoped<IUrunVaryasyonDAL, EFUrunVaryasyonDAL>();
 builder.Services.AddScoped<IPersonelServis, PersonelManager>();
 builder.Services.AddScoped<IPersonelDAL, EFPersonelDAL>();
 
+builder.Services.AddScoped<IFavoriServis, FavoriManager>();
+builder.Services.AddScoped<IFavoriDAL, EFFavoriDAL>();
+
 // Generic servisler
 builder.Services.AddScoped<IGenericService<Rol>, GenericManager<Rol>>();
 builder.Services.AddScoped<IGenericDal<Rol>, GenericRepository<Rol>>();

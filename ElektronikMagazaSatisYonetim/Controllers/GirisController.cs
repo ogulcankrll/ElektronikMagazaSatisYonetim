@@ -35,12 +35,12 @@ namespace ElektronikMagazaSatisYonetim.Controllers
                 HttpContext.Session.SetString("PersonelAdSoyad", girisYapan.Ad + " " + girisYapan.Soyad);
                 HttpContext.Session.SetInt32("RolID", girisYapan.RolID);
 
-                // Kullanıcının rolüne göre yönlendirme yapalım
-                if (girisYapan.RolID == 3) // Admin rolü
+                
+                if (girisYapan.RolID == 12) 
                 {
                     return RedirectToAction("Index", "AnaSayfa"); // Admin yönlendirmesi
                 }
-                else if (girisYapan.RolID == 2) // Personel rolü
+                else if (girisYapan.RolID == 11) // Personel rolü
                 {
                     return RedirectToAction("Index", "AnaSayfa"); // Personel yönlendirmesi
                 }

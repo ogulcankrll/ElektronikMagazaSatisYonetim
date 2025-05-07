@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Models.UrunVaryasyon
+@{
+    ViewData["Title"] = "VaryasyonEkle";
+    Layout = "~/Views/Shared/_CoreLayout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="VaryasyonEkle" method="post">
+    <div class="form-group">
+        <label for="UrunID">Ürün</label>
+        <select asp-for="UrunID" class="form-control" asp-items="ViewBag.Urunler"></select>
+    </div>
+    <div class="form-group">
+        <label for="VaryasyonAdi">Varyasyon Adı</label>
+        <input asp-for="VaryasyonAdi" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="EkFiyat">Ek Fiyat</label>
+        <input asp-for="EkFiyat" class="form-control" type="number" step="0.01" />
+    </div>
+    
+    <button type="submit" class="btn btn-success">Ekle</button>
+</form>
+

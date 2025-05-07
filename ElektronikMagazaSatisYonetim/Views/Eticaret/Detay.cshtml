@@ -1,0 +1,163 @@
+﻿@model EntityLayer.Models.Urun
+@{
+    ViewBag.Title = Model.Ad + " - Ürün Detayı";
+    Layout = "~/Views/Shared/_MusteriLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Eticaret")">Ürünler</a></li>
+        <li class="breadcrumb-item"><a href="#">@Model.Kategori?.Ad</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Ad</li>
+    </ol>
+</nav>
+
+<div class="card product-detail-card mb-4">
+    <div class="row g-0">
+        <div class="col-md-5">
+            <div class="position-relative">
+                @if (!string.IsNullOrEmpty(Model.ResimURL))
+                {
+                    <img src="@Model.ResimURL" class="img-fluid rounded-start h-100 w-100" style="object-fit: contain; max-height: 500px;" alt="@Model.Ad" />
+                }
+                else
+                {
+                    <img src="https://via.placeholder.com/500x500?text=Ürün+Görseli" class="img-fluid rounded-start" alt="@Model.Ad" />
+                }
+                <button class="btn btn-sm position-absolute top-0 end-0 m-3 bg-white rounded-circle p-2 shadow-sm" data-bs-toggle="tooltip" title="Favorilere Ekle">
+                    <i class="far fa-heart text-danger"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-brand me-2">@Model.Marka?.Ad</span>
+                    <span class="badge badge-category">@Model.Kategori?.Ad</span>
+                </div>
+                <h2 class="card-title fw-bold">@Model.Ad</h2>
+                <div class="mb-3">
+                    <span class="text-muted me-2">Ürün Kodu:</span>
+                    <span>@Model.Id</span>
+                </div>
+                <div class="mb-4">
+                    <h3 class="price">@Model.Fiyat.ToString("N2") ₺</h3>
+                    <small class="text-success">
+                        <i class="fas fa-truck me-1"></i> Ücretsiz Kargo
+                    </small>
+                </div>
+
+                @if (Model.UrunVaryasyonlari != null && Model.UrunVaryasyonlari.Any())
+                {
+                    <div class="mb-4">
+                        <h5>Varyasyonlar</h5>
+                        <div class="form-group">
+                            <select class="form-select mb-3" id="varyasyonSecimi">
+                                <option value="0" selected>Standart - @Model.Fiyat.ToString("N2") ₺</option>
+                                @foreach (var varyasyon in Model.UrunVaryasyonlari)
+                                {
+                                    <option value="@varyasyon.Id">@varyasyon.VaryasyonAdi - @((Model.Fiyat + varyasyon.EkFiyat).ToString("N2")) ₺</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="input-group me-3" style="width: 130px;">
+                        <button class="btn btn-outline-secondary" type="button" id="azaltBtn">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="text" class="form-control text-center" value="1" id="adetInput">
+                        <button class="btn btn-outline-secondary" type="button" id="artirBtn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary btn-lg flex-grow-1">
+                        <i class="fas fa-shopping-cart me-2"></i> Sepete Ekle
+                    </button>
+                </div>
+
+                <div class="d-flex mb-4">
+                    <button class="btn btn-outline-secondary me-2">
+                        <i class="fas fa-share-alt me-1"></i> Paylaş
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-exchange-alt me-1"></i> Karşılaştır
+                    </button>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <i class="fas fa-shield-alt text-success me-2"></i>
+                        <span>Güvenli Alışveriş</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-undo text-success me-2"></i>
+                        <span>30 Gün İade</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        <span>Orijinal Ürün</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs" id="urunDetayTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="aciklama-tab" data-bs-toggle="tab" data-bs-target="#aciklama" type="button" role="tab" aria-controls="aciklama" aria-selected="true">Ürün Açıklaması</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="ozellikler-tab" data-bs-toggle="tab" data-bs-target="#ozellikler" type="button" role="tab" aria-controls="ozellikler" aria-selected="false">Teknik Özellikler</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="yorumlar-tab" data-bs-toggle="tab" data-bs-target="#yorumlar" type="button" role="tab" aria-controls="yorumlar" aria-selected="false">Müşteri Yorumları</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="taksit-tab" data-bs-toggle="tab" data-bs-target="#taksit" type="button" role="tab" aria-controls="taksit" aria-selected="false">Taksit Seçenekleri</button>
+            </li>
+        </ul>
+        <div class="tab-content p-4 border border-top-0 rounded-bottom" id="urunDetayTabContent">
+            <div class="tab-pane fade show active" id="aciklama" role="tabpanel" aria-labelledby="aciklama-tab">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.</p>
+                <p>Donec pretium posuere tellus. Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla posuere. Donec vitae dolor.</p>
+                <p>Nullam tristique diam non turpis. Cras placerat accumsan nulla. Nullam rutrum. Nam vestibulum accumsan nisl.</p>
+            </div>
+            <div class="tab-pane fade" id="ozellikler" role="tabpanel" aria-labelledby="ozellikler-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="width: 30%;">Marka</th>
+                                <td>@Model.Marka?.Ad</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kategori</th>
+                                <td>@Model.Kategori?.Ad</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Model</th>
+                                <td>@Model.Ad</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Garanti</th>
+                                <td>24 Ay</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Stok Durumu</th>
+                                <td><span class="text-success">Stokta Var</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="yorumlar" role="tabpanel" aria-labelledby="yorumlar-tab">
+                <div class="d-flex justify-content

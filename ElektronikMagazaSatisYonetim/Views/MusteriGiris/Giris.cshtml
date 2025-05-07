@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Giris";
+    Layout = "~/Views/Shared/_MusteriGirisLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Müşteri Giriş</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #4361ee;
+            border-color: #4361ee;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+            .btn-primary:hover {
+                background-color: #3a56d4;
+                border-color: #3a56d4;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="login-container">
+            <div class="header-logo">
+                <i class="fas fa-shopping-cart fa-3x text-primary"></i>
+            </div>
+            <h2 class="form-title">Müşteri Girişi</h2>
+
+            @if (ViewBag.Hata != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>@ViewBag.Hata
+                </div>
+            }
+
+            <form asp-action="Giris" asp-controller="MusteriGiris" method="post">
+                <div class="form-group">
+                    <label for="eposta" class="form-label">E-posta</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" id="eposta" name="eposta" placeholder="E-posta adresinizi girin" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sifre" class="form-label">Şifre</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="sifre" name="sifre" placeholder="Şifrenizi girin" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt me-2"></i>Giriş Yap
+                    </button>
+                </div>
+            </form>
+
+            <div class="register-link">
+                <p>Hesabınız yok mu? <a asp-action="Kayit" asp-controller="MusteriGiris">Kayıt Olun</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

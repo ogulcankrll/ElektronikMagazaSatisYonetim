@@ -9,5 +9,7 @@ namespace DataAccessLayer.Abstcart
 {
     public interface IFavoriDAL:IGenericDal<Favori>
     {
+        List<Favori> MusterininFavorileri(int musteriId);
+        bool FavoriVarMi(int musteriId, int urunId);
     }
 }
